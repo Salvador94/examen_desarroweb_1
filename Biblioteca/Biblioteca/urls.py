@@ -18,11 +18,17 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from libros.views import home, lista_libros, detalle_libro
+from libros.views import home
+from libros.views import lista_libros, detalle_libro, LibroListView
+from libros.views import LibroCreateView, LibroUpdateView, LibroDeleteView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^libros/$', home, name='home'),
     url(r'^libros/lista$', lista_libros, name='list'),
-    url(r'^libros/detalle$', detalle_libro, name='detail'),
+    url(r'^libros/detalle/(?P<id>\d+)/$', detalle_libro, name='detail'),
+    url(r'^libros/create$', LibroCreateView.as_view(), name='libro_create'),
+    url(r'^libros/detalle/(?P<pk>\d+)/actualizar/$', LibroUpdateView.as_view(), name='Libro_edit'),
+    url(r'^libros/detalle/(?P<pk>\d+)/eliminar/$', LibroDeleteView.as_view(), name='Libro_delete'),
+    url(r'^libros/list$', LibroListView.as_view(), name='Libros_list'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
