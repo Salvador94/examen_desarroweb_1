@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-from .models import Libro
+
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView, DetailView
-from .forms import LibroModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
+
+from .forms import LibroModelForm
+from .models import Libro
 
 # Create your views here.
 
@@ -34,9 +36,8 @@ class LibroCreateView(CreateView):
       success_url = "/lista"
 
 class LibroDetailView(DetailView):
-    template_name = "libros/detalle_libro.html"
-    queryset = Libro.objects.all()
-
+    template_name = "detalle_libro.html"
+    model = Libro
     def get_object(self):
         id = self.kwargs.get("id")
         print id
@@ -59,12 +60,15 @@ class LibroListView(ListView):
              Q(Nombre__icontains = query)|
              Q(user__username__icontains = query)
              )
-             return qs
+         return qs
+
       def get_context_data(self, *args, **kwargs):
           context = super(LibroListView, self).get_context_data(*args, **kwargs)
+          print '####################'
           print context
+          print '####################'
           context['create_form'] = LibroModelForm()
-          context['create_url'] = reverse_lazy("Libro_create")
+          context['create_url'] = reverse_lazy("Libro_list")
           return context
 
 def lista_libros(request):
