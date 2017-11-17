@@ -3,7 +3,8 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .mixin import FormUserNeededMixin
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -21,19 +22,20 @@ def home(request):
 
 class LibroDeleteView(LoginRequiredMixin, DeleteView):
       model = Libro
-      template_name = "Delete_confirm.html"
+      template_name = "delete_confirm.html"
       success_url = reverse_lazy("lista")
 
 class LibroUpdateView(UpdateView):
       queryset = Libro.objects.all()
       form_class = LibroModelForm
       template_name = "update_view.html"
-      success_url = "Libro/lista"
+      success_url = "/libros/list"
 
-class LibroCreateView(CreateView):
+class LibroCreateView(FormUserNeededMixin, CreateView):
       form_class = LibroModelForm
       template_name = "form.html"
-      success_url = "/lista"
+      success_url = "/libros/list"
+      login_url = "/admin"
 
 class LibroDetailView(DetailView):
     template_name = "detalle_libro.html"

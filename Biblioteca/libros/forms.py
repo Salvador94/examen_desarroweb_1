@@ -8,7 +8,7 @@ class LibroModelForm(forms.ModelForm):
     class Meta:
         model = Libro
         fields = [
-            "user",
+            #"user",
             "Nombre",
             "Autor",
             "ISBN",

@@ -17,6 +17,7 @@ data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="
 aria-label="Toggle navigation">
  <span class="navbar-toggler-icon"></span>
  </button>
+ <a class="btn btn-primary" href="/libros/create" role="button"> Agregar </a>
 
  <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
  <ul class="navbar-nav">
@@ -35,7 +36,9 @@ aria-label="Toggle navigation">
         <h1>{{i.Nombre}}</h1>
         <p>{{i.Autor}}</p>
         <p>{{i.Editorial}}</p>
-
+        <a class="btn btn-primary" href="/libros/detalle/{{i.id}}/actualizar/" role="button"> Modificar </a>
+        <a class="btn btn-primary" href="/libros/detalle/{{i.id}}/eliminar/" role="button"> Eliminar </a>
+        <a class="btn btn-primary" href="/libros/detalle/{{i.id}}/" role="button"> Información </a>
         </div>
        </div>
 

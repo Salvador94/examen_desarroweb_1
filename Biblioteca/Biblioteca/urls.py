@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^libros/detalle/(?P<pk>\d+)/actualizar/$', LibroUpdateView.as_view(), name='Libro_edit'),
     url(r'^libros/detalle/(?P<pk>\d+)/eliminar/$', LibroDeleteView.as_view(), name='Libro_delete'),
     url(r'^libros/detalle/(?P<id>\d)/$', LibroDetailView.as_view(), name='detalle_libro'),
-    url(r'^libros/list$', LibroListView.as_view(), name='Libros_list'),
+    url(r'^libros/list$', LibroListView.as_view(), name='lista'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
