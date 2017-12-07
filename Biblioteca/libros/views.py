@@ -20,7 +20,7 @@ def home(request):
     Titulo = "libros"
     return render(request, 'home.html', {'TitleV': Titulo})
 
-class LibroDeleteView(LoginRequiredMixin, DeleteView):
+class LibroDeleteView(LoginRequiredMixin,FormUserNeededMixin, DeleteView):
       model = Libro
       template_name = "delete_confirm.html"
       success_url = reverse_lazy("lista")
@@ -51,7 +51,7 @@ class LibroDetailView(DetailView):
         return context
 
 class LibroListView(ListView):
-      template_name = "lista_libros.html"
+      template_name = "libro_list_ajax.html"
 
       def get_queryset(self, *args, **kwargs):
          qs = Libro.objects.all()
@@ -70,7 +70,7 @@ class LibroListView(ListView):
           print context
           print '####################'
           context['create_form'] = LibroModelForm()
-          context['create_url'] = reverse_lazy("Libro_list")
+          context['create_url'] = reverse_lazy("libro_create")
           return context
 
 def lista_libros(request):
