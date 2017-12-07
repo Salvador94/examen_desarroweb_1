@@ -17,6 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.views import UserRegisterView
 
 from libros.views import home
 from libros.views import lista_libros, detalle_libro, LibroListView
@@ -32,7 +33,7 @@ urlpatterns = [
     url(r'^libros/detalle/(?P<pk>\d+)/eliminar/$', LibroDeleteView.as_view(), name='Libro_delete'),
     url(r'^libros/detalle/(?P<id>\d)/$', LibroDetailView.as_view(), name='detalle_libro'),
     url(r'^libros/list$', LibroListView.as_view(), name='lista'),
-    
+
     url(r'^accounts/profile/$', LibroListView.as_view(), name='tweet_list'),
     url(r'^api/libros/', include ('libros.api.urls', namespace = 'libro_api')),
     url(r'^accounts/register/$', UserRegisterView.as_view(), name='register'),
