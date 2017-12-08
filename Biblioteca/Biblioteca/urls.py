@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^libros/$', home, name='home'),
     url(r'^libros/lista$', lista_libros, name='list'),
-    url(r'^libros/detalle/(?P<id>\d+)/$', detalle_libro, name='detail'),
+    #url(r'^libros/detalle/(?P<id>\d+)/$', detalle_libro(, name='detail'),
     url(r'^libros/create$', LibroCreateView.as_view(), name='libro_create'),
     url(r'^libros/detalle/(?P<pk>\d+)/actualizar/$', LibroUpdateView.as_view(), name='Libro_edit'),
     url(r'^libros/detalle/(?P<pk>\d+)/eliminar/$', LibroDeleteView.as_view(), name='Libro_delete'),
